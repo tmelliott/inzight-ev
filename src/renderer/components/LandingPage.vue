@@ -1,40 +1,46 @@
 <template>
-  <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-    <main>
-      <div class="left-side">
-        <span class="title">
-          iNZight
-        </span>
-        <system-information></system-information>
-      </div>
+  <div id="windowContainer">
+    <div id="wrapper">
+      <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+      <main>
+        <div class="left-side">
+          <span class="title">
+            iNZight
+          </span>
+          <system-information></system-information>
+        </div>
 
-      <div class="right-side">
-        <div class="doc">
-          <div class="title">Getting Started</div>
-          <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
+        <div class="right-side">
+          <div class="doc">
+            <div class="title">Getting Started</div>
+            <p>
+              electron-vue comes packed with detailed documentation that covers everything from
+              internal configurations, using the project structure, building your application,
+              and so much more.
+            </p>
+            <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
+          </div>
+          <div class="doc">
+            <div class="title alt">Other Documentation</div>
+            <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
+            <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
+          </div>
         </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
-        </div>
-      </div>
-    </main>
-  </div>
+      </main>
+    </div>
+    <div id="Rcontainer">
+      <Rprocess></Rprocess>
+    </div>
+  </div><!-- .windowContainer -->
 </template>
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  import Rprocess from './Rprocess.vue'
 
   export default {
     name: 'landing-page',
-    components: { SystemInformation },
+    components: { SystemInformation, Rprocess },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
@@ -53,6 +59,13 @@
   }
 
   body { font-family: 'Source Sans Pro', sans-serif; }
+  
+  #windowContainer {
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
   #wrapper {
     background:
@@ -61,9 +74,14 @@
         rgba(255, 255, 255, 1) 40%,
         rgba(229, 229, 229, .9) 100%
       );
-    height: 100vh;
     padding: 60px 80px;
     width: 100vw;
+  }
+
+  #Rcontainer {
+    height: 50vh;
+    padding: 5px 10px;
+    font-family: monospace;
   }
 
   #logo {

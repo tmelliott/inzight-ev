@@ -1,0 +1,8 @@
+To Do:
+
+- replace LandingPage.vue component with iNZight.vue, the top-level component
+- iNZight.vue has children
+  - Rprocess.vue (responsible for launching Rserve and connecting to it)
+  - iNZightMain.vue (the main GUI interface)
+    - Graphics.vue (the plots)
+  - Dataset.vue (the dataset, which needs to comunicate with R and GUI)

@@ -10,10 +10,10 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-const { spawn } = require('child_process')
+const { exec } = require('child_process')
 // change for different OSs
-// let rPath = '/usr/local/bin/R'
-const rserve = 'rserve-js'
+let rPath = '/usr/local/bin/R'
+const rserve = require('rserve-js')
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -36,7 +36,7 @@ function createWindow () {
   // 2. load R daemon
   console.log(' * launching R')
 
-  const rs = exec('/usr/local/bin/R -e "Rserve::run.Rserve(args = \'--no-save\')"')
+  const rs = exec(`${rPath} -e "Rserve::run.Rserve(args = '--no-save')"`)
   // rs.on('message', (message) => {
   //   console.log(message)
   // })
@@ -45,19 +45,20 @@ function createWindow () {
   //     `child process terminated due to receipt of signal ${signal}`);
   // });
   // exec(`kill -9 ${rs.pid}`)
-  // rs.on('exit', code => {
-  //   console.log(`Exit code is ${code}`)
-  // })
-  // cp.exec(rPath + ' -e \'Rserve::Rserve(args = "--no-save")\'')
-  
-  let rc = Rserve.connect('localhost', 6311, function () {
-    rc.eval('as.character(getRversion())', function (err, res) {
-      console.log('Connected to R successfully: R ' + res[0])
-    })
+  rs.on('exit', code => {
+    console.log(`Exit code is ${code}`)
   })
 
-  // 3. update window with the real stuff
-  console.log(' * starting iNZight')
+  let rc = rserve.connect('localhost', 6311, function () {
+    rc.eval('as.character(getRversion())', function (err, res) {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log('Connected to R ' + res[0])
+      // trigger the app to continue loading
+    })
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
