@@ -681,6 +681,7 @@
 	},
 	"file_history":
 	[
+		"/Users/tom/iNZight/inzight-ev/src/main/index.js",
 		"/Users/tom/iNZight/inzight-ev/package.json",
 		"/Users/tom/iNZight/inzight-ev/yarn.lock",
 		"/Users/tom/iNZight/inzight-ev/test/unit/specs/LandingPage.spec.js",
@@ -807,8 +808,7 @@
 		"/Users/tom/iNZight/iNZightVIT-osx-installer/Installer/scripts/install_r.sh",
 		"/Users/tom/iNZight/iNZightVIT-osx-installer/Files/iNZightVIT/VIT.app/Contents/MacOS/.Rprofile",
 		"/Users/tom/iNZight/iNZightVIT-osx-installer/Files/iNZightVIT/iNZight.app/Contents/MacOS/.Rprofile",
-		"/Users/tom/uni/busdelays/data/simplify_db.R",
-		"/Users/tom/uni/busdelays/data/make_data.R"
+		"/Users/tom/uni/busdelays/data/simplify_db.R"
 	],
 	"find":
 	{

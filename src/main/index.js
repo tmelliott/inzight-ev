@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'development') {
 const { spawn } = require('child_process')
 // change for different OSs
 // let rPath = '/usr/local/bin/R'
-// import { rserve } from 'rserve-js'
+const rserve = 'rserve-js'
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -44,11 +44,17 @@ function createWindow () {
   //   console.log(
   //     `child process terminated due to receipt of signal ${signal}`);
   // });
-  exec(`kill -9 ${rs.pid}`)
-  rs.on('exit', code => {
-    console.log(`Exit code is ${code}`)
-  })
+  // exec(`kill -9 ${rs.pid}`)
+  // rs.on('exit', code => {
+  //   console.log(`Exit code is ${code}`)
+  // })
   // cp.exec(rPath + ' -e \'Rserve::Rserve(args = "--no-save")\'')
+  
+  let rc = Rserve.connect('localhost', 6311, function () {
+    rc.eval('as.character(getRversion())', function (err, res) {
+      console.log('Connected to R successfully: R ' + res[0])
+    })
+  })
 
   // 3. update window with the real stuff
   console.log(' * starting iNZight')
