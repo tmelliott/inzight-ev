@@ -35,7 +35,16 @@ function createWindow () {
 
   // 2. load R daemon
   console.log(' * launching R')
-  const rs = spawn('R', ['-e "print(\'hello world\')"'])
+
+  const rs = exec('/usr/local/bin/R -e "Rserve::run.Rserve(args = \'--no-save\')"')
+  // rs.on('message', (message) => {
+  //   console.log(message)
+  // })
+  // rs.on('close', (code, signal) => {
+  //   console.log(
+  //     `child process terminated due to receipt of signal ${signal}`);
+  // });
+  exec(`kill -9 ${rs.pid}`)
   rs.on('exit', code => {
     console.log(`Exit code is ${code}`)
   })
