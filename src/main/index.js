@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
-const spawn = require('child_process')
+const { spawn } = require('child_process')
 // change for different OSs
 // let rPath = '/usr/local/bin/R'
 // import { rserve } from 'rserve-js'
