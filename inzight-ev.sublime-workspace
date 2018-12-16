@@ -682,6 +682,7 @@
 	"file_history":
 	[
 		"/Users/tom/iNZight/inzight-ev/package.json",
+		"/Users/tom/iNZight/inzight-ev/yarn.lock",
 		"/Users/tom/iNZight/inzight-ev/test/unit/specs/LandingPage.spec.js",
 		"/Users/tom/iNZight/inzight-ev/src/renderer/components/LandingPage.vue",
 		"/Users/tom/iNZight/inzight-ev/.travis.yml",
@@ -807,12 +808,11 @@
 		"/Users/tom/iNZight/iNZightVIT-osx-installer/Files/iNZightVIT/VIT.app/Contents/MacOS/.Rprofile",
 		"/Users/tom/iNZight/iNZightVIT-osx-installer/Files/iNZightVIT/iNZight.app/Contents/MacOS/.Rprofile",
 		"/Users/tom/uni/busdelays/data/simplify_db.R",
-		"/Users/tom/uni/busdelays/data/make_data.R",
-		"/Users/tom/uni/busdelays/README.Rmd"
+		"/Users/tom/uni/busdelays/data/make_data.R"
 	],
 	"find":
 	{
-		"height": 31.0
+		"height": 54.0
 	},
 	"find_in_files":
 	{
@@ -826,6 +826,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"exec"
 		],
 		"highlight": true,
 		"in_selection": false,

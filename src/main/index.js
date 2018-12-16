@@ -10,6 +10,11 @@ if (process.env.NODE_ENV !== 'development') {
   global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
+const spawn = require('child_process')
+// change for different OSs
+// let rPath = '/usr/local/bin/R'
+// import { rserve } from 'rserve-js'
+
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
@@ -25,7 +30,19 @@ function createWindow () {
     width: 1000
   })
 
+  // 1. display "Loading" window
   mainWindow.loadURL(winURL)
+
+  // 2. load R daemon
+  console.log(' * launching R')
+  const rs = spawn('R', ['-e "print(\'hello world\')"'])
+  rs.on('exit', code => {
+    console.log(`Exit code is ${code}`)
+  })
+  // cp.exec(rPath + ' -e \'Rserve::Rserve(args = "--no-save")\'')
+
+  // 3. update window with the real stuff
+  console.log(' * starting iNZight')
 
   mainWindow.on('closed', () => {
     mainWindow = null
